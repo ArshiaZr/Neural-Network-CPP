@@ -13,7 +13,7 @@
 int main()
 {
     // creating neural network
-    // 3 input neurons, 5 hidden neurons and 1 output neuron
+    // 3 input neurons, 3 * 5 hidden neurons and 1 output neuron
     std::vector<uint32_t> topology = {3, 5, 5, 5, 1};
     std::vector<std::string> activationMethods = {"sigmoid", "sigmoid", "sigmoid", "sigmoid"};
     
