@@ -3,14 +3,20 @@
 #include <cstdio>
 
 #include "NeuralNetwork.hpp"
+#include "utils.hpp"
 
+// A simple learning test case
+// The model learns the the relation between the inputs
+
+// Relation: (input0 || (input1 && input2))
 
 int main()
 {
     // creating neural network
-    // 2 input neurons, 3 hidden neurons and 1 output neuron
-    std::vector<uint32_t> topology = {3, 5, 1};
-    std::vector<std::string> activationMethods = {"sigmoid", "sigmoid"};
+    // 3 input neurons, 5 hidden neurons and 1 output neuron
+    std::vector<uint32_t> topology = {3, 5, 5, 5, 1};
+    std::vector<std::string> activationMethods = {"sigmoid", "sigmoid", "sigmoid", "sigmoid"};
+    
     sp::NeuralNetwork nn(topology, activationMethods, 0.1);
     
     //sample dataset
@@ -34,37 +40,29 @@ int main()
         {0.0f},
         {1.0f}
     };
-
-    uint32_t epoch = 500000;
     
-    //training the neural network with randomized data
-    std::cout << "training start\n";
-
-    for(uint32_t i = 0; i < epoch; i++)
-    {
+    // Create training dataset
+    uint32_t training_number = 1000000;
+    std::vector<std::vector<float>> training_inputs;
+    std::vector<std::vector<float>> training_outputs;
+    for(uint32_t i = 0; i < training_number; i++){
         uint32_t index = rand() % targetInputs.size();
-        nn.feedForword(targetInputs[index]);
-        nn.backPropagate(targetOutputs[index]);
+        training_inputs.push_back(targetInputs[index]);
+        training_outputs.push_back(targetOutputs[index]);
     }
-
-    std::cout << "training complete\n";
-
-
-    //testing the neural network
-    int i = 0;
-    for( std::vector<float> input : targetInputs)
-    {
-        nn.feedForword(input);
-        std::vector<float> preds = nn.getPredictions();
-        i++;
-        int ans = 0;
-        if(input[0] == 1.0f){
-            ans = 1;
-        }else if(input[1] == 1.0f && input[2] == 1){
-            ans = 1;
-        }
-        std::cout << i << ": " << ans <<" => " << preds[0] << std::endl;
+    
+    nn.train(training_inputs, training_outputs, 50, true, true);
+    
+    
+    // Create testing dataset
+    uint32_t testing_number = 100;
+    std::vector<std::vector<float>> testing_inputs;
+    std::vector<std::vector<float>> testing_outputs;
+    for(uint32_t i = 0; i < testing_number; i++){
+        uint32_t index = rand() % targetInputs.size();
+        testing_inputs.push_back(targetInputs[index]);
+        testing_outputs.push_back(targetOutputs[index]);
     }
-
+    nn.test(testing_inputs, testing_outputs);
     return 0;
 }

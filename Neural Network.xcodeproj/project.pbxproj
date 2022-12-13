@@ -25,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		695B0CA12947DB7B00771682 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		695B0CA32948216900771682 /* utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = utils.hpp; sourceTree = "<group>"; };
 		69D8E6292947987C00B79EC2 /* Neural Network */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Neural Network"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69D8E62C2947987C00B79EC2 /* NeuralNetwork.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NeuralNetwork.hpp; sourceTree = "<group>"; };
 		69D8E6332947991C00B79EC2 /* Matrix.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Matrix.hpp; sourceTree = "<group>"; };
@@ -65,6 +66,7 @@
 				69D8E6332947991C00B79EC2 /* Matrix.hpp */,
 				69D8E63429479E0E00B79EC2 /* activitions.hpp */,
 				695B0CA12947DB7B00771682 /* main.cpp */,
+				695B0CA32948216900771682 /* utils.hpp */,
 			);
 			path = "Neural Network";
 			sourceTree = "<group>";
